@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "middleware": {},
+  "functions": {
+    "/api/challenge/route": {
+      "files": [
+        "server/middleware-build-manifest.js",
+        "server/middleware-react-loadable-manifest.js",
+        "server/next-font-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "server/edge-runtime-webpack.js",
+        "server/app/api/challenge/route.js"
+      ],
+      "name": "app/api/challenge/route",
+      "page": "/api/challenge/route",
+      "matchers": [
+        {
+          "regexp": "^/api/challenge$",
+          "originalSource": "/api/challenge"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "environments": {}
+    }
+  },
+  "sortedMiddleware": []
+}
