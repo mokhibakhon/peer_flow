@@ -280,26 +280,8 @@ function PricingCard({
   );
 }
 /* ───────── helpers ───────── */
-function PlanRow({
-  label,
-  free,
-  pro,
-}: {
-  label: string;
-  free: React.ReactNode;
-  pro: React.ReactNode;
-}) {
-  return (
-    <tr>
-      <td className="py-4 pl-4 font-medium">{label}</td>
-      <td className="py-4 text-center">{free}</td>
-      <td className="py-4 text-center">{pro}</td>
-    </tr>
-  );
-}
-
 type StepProps = {
-  icon: (props: React.ComponentProps<'svg'>) => JSX.Element;
+  icon: React.ComponentType<React.ComponentProps<'svg'>>;
   label: string;
 };
 function HowItWorksStep({ icon: Icon, label }: StepProps) {

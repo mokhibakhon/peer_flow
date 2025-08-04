@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, message: 'Email already registered' }, { status: 409 });
   }
 
-  const line = `\${email},\${new Date().toISOString()}\n`;
+  const line = `${email},${new Date().toISOString()}\n`;
   await fs.promises.appendFile(filePath, line);
   return NextResponse.json({ ok: true });
 }

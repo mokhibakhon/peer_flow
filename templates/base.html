@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Peer Flow{% endblock %}</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Heroicons -->
+    <script src="https://unpkg.com/@heroicons/react@2.0.18/24/outline/esm/index.js"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --color-primary: #4F46E5;
+            --color-primary-50: #EEF2FF;
+            --color-accent: #22C55E;
+            --color-gray-900: #111827;
+            --color-gray-500: #6B7280;
+            --color-surface: #F9FAFB;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--color-surface);
+            color: var(--color-gray-900);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .bg-primary { background-color: var(--color-primary); }
+        .bg-accent { background-color: var(--color-accent); }
+        .text-accent { color: var(--color-accent); }
+        .border-accent { border-color: var(--color-accent); }
+        .bg-surface { background-color: var(--color-surface); }
+        
+        .focus-visible\:ring-primary:focus-visible {
+            --tw-ring-color: var(--color-primary);
+        }
+        
+        .focus-visible\:ring-accent:focus-visible {
+            --tw-ring-color: var(--color-accent);
+        }
+    </style>
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="{{ url_for('home') }}" class="text-2xl font-bold text-primary">
+                    Peer Flow
+                </a>
+                
+                <div class="flex items-center space-x-4">
+                    {% if session.email %}
+                        <span class="text-sm text-gray-600">{{ session.email }}</span>
+                        <a href="{{ url_for('dashboard') }}" class="text-sm text-primary hover:underline">Dashboard</a>
+                        <a href="{{ url_for('logout') }}" class="text-sm text-gray-600 hover:underline">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="text-sm text-primary hover:underline">Login</a>
+                        <a href="{{ url_for('signup') }}" class="bg-primary text-white px-4 py-2 rounded-md text-sm hover:opacity-90">
+                            Sign Up
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="container mx-auto px-6 py-4">
+                {% for category, message in messages %}
+                    <div class="mb-4 p-4 rounded-md {% if category == 'error' %}bg-red-50 border border-red-200 text-red-700{% else %}bg-green-50 border border-green-200 text-green-700{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-32">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">&copy; 2024 Peer Flow. Learn together, level up faster.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Utility functions
+        function showAlert(message) {
+            alert(message);
+        }
+        
+        function saveToLocalStorage(key, value) {
+            localStorage.setItem(key, JSON.stringify(value));
+        }
+        
+        function getFromLocalStorage(key, defaultValue = null) {
+            const item = localStorage.getItem(key);
+            if (item) {
+                try {
+                    return JSON.parse(item);
+                } catch {
+                    return defaultValue;
+                }
+            }
+            return defaultValue;
+        }
+        
+        // API functions
+        async function apiCall(url, options = {}) {
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    },
+                    ...options
+                });
+                return await response.json();
+            } catch (error) {
+                console.error('API call failed:', error);
+                throw error;
+            }
+        }
+    </script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html> 

@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}Peer Flow - Learn together, level up faster{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative isolate overflow-hidden rounded-3xl bg-gray-900 mx-4 lg:mx-8 mt-6">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-purple-900 opacity-70"></div>
+    
+    <div class="relative z-10 mx-auto max-w-4xl px-6 py-32 text-center text-white">
+        <h1 class="text-5xl font-bold leading-tight">
+            Learn together, <span class="text-accent">level up faster</span>
+        </h1>
+        <p class="mt-6 text-lg text-gray-300">
+            Tired of hitting walls alone? Peer Flow matches you with a coding
+            buddy at your level so you can learn, grow and celebrate
+            achievements together.
+        </p>
+        <a href="{{ url_for('find_a_peer') }}" 
+           class="mt-10 inline-flex items-center gap-2 rounded-md bg-accent px-8 py-4 font-semibold text-gray-900 shadow hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white">
+            Find Your Coding Buddy
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+        </a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="how-it-works" class="container mx-auto mt-28 max-w-4xl px-6 text-center">
+    <h2 class="text-4xl font-bold">Features that boost your progress</h2>
+    <p class="mx-auto mt-4 max-w-xl text-gray-500">
+        AI-generated 21-day challenges, instant partner matching, study-with-me
+        sessions and a shared streak tracker keep you engaged every day.
+    </p>
+
+    <ul class="mt-16 mx-auto max-w-2xl space-y-12 pl-12 sm:pl-16 text-left">
+        <li class="grid max-w-2xl grid-cols-[48px_1fr] gap-6 mx-auto">
+            <svg class="h-10 w-10 shrink-0 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div>
+                <h3 class="text-lg font-semibold">AI-Generated 21-Day Challenges</h3>
+                <p class="mt-1 text-gray-500">Tailored learning paths that adapt to your skill level.</p>
+            </div>
+        </li>
+        
+        <li class="grid max-w-2xl grid-cols-[48px_1fr] gap-6 mx-auto">
+            <svg class="h-10 w-10 shrink-0 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+            </svg>
+            <div>
+                <h3 class="text-lg font-semibold">Instant Matching & Built-in Video Rooms</h3>
+                <p class="mt-1 text-gray-500">Connect with a coding buddy in your timezone for seamless collaboration.</p>
+            </div>
+        </li>
+        
+        <li class="grid max-w-2xl grid-cols-[48px_1fr] gap-6 mx-auto">
+            <svg class="h-10 w-10 shrink-0 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+            <div>
+                <h3 class="text-lg font-semibold">Shared Streak</h3>
+                <p class="mt-1 text-gray-500">Track your progress together.</p>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<!-- Pricing Section -->
+<section class="container mx-auto mt-32 max-w-5xl px-6">
+    <h2 class="text-4xl font-bold text-center">Choose your plan</h2>
+    <p class="mx-auto mt-4 max-w-xl text-center text-gray-500">
+        Flexible plans for every budget and learning style
+    </p>
+
+    <div class="mt-16 grid gap-8 lg:grid-cols-2">
+        <!-- Free Plan -->
+        <div class="rounded-2xl border border-gray-200 bg-white p-8">
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold">Free</h3>
+                <p class="mt-2 text-gray-500">Perfect for getting started</p>
+                <div class="mt-4">
+                    <span class="text-4xl font-bold">$0</span>
+                    <span class="text-gray-500">/month</span>
+                </div>
+            </div>
+            
+            <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3">
+                    <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Basic peer matching</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>21-day challenge templates</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Progress tracking</span>
+                </li>
+            </ul>
+            
+            <a href="{{ url_for('signup') }}" 
+               class="block w-full bg-gray-900 text-white text-center py-3 px-4 rounded-md hover:bg-gray-800 transition-colors">
+                Get Started Free
+            </a>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="rounded-2xl border-2 border-accent bg-white p-8 relative">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">Most Popular</span>
+            </div>
+            
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold">Pro</h3>
+                <p class="mt-2 text-gray-500">For serious learners</p>
+                <div class="mt-4">
+                    <span class="text-4xl font-bold">$19</span>
+                    <span class="text-gray-500">/month</span>
+                </div>
+            </div>
+            
+            <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3">
+                    <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Everything in Free</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>AI-powered personalized challenges</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Priority matching</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Advanced analytics</span>
+                </li>
+            </ul>
+            
+            <a href="{{ url_for('signup') }}" 
+               class="block w-full bg-accent text-white text-center py-3 px-4 rounded-md hover:opacity-90 transition-opacity">
+                Start Pro Trial
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="container mx-auto mt-32 max-w-4xl px-6">
+    <h2 class="text-4xl font-bold text-center">How it works</h2>
+    <p class="mx-auto mt-4 max-w-xl text-center text-gray-500">
+        Get started in minutes, not days
+    </p>
+
+    <div class="mt-16 grid gap-8 md:grid-cols-3">
+        <div class="text-center">
+            <div class="mx-auto w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mb-4">1</div>
+            <h3 class="text-lg font-semibold mb-2">Sign up</h3>
+            <p class="text-gray-500">Create your profile and tell us about your learning goals</p>
+        </div>
+        
+        <div class="text-center">
+            <div class="mx-auto w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mb-4">2</div>
+            <h3 class="text-lg font-semibold mb-2">Find your buddy</h3>
+            <p class="text-gray-500">Browse and connect with peers at your skill level</p>
+        </div>
+        
+        <div class="text-center">
+            <div class="mx-auto w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mb-4">3</div>
+            <h3 class="text-lg font-semibold mb-2">Start learning</h3>
+            <p class="text-gray-500">Begin your 21-day challenge and track progress together</p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="container mx-auto mt-32 max-w-3xl px-6">
+    <h2 class="text-4xl font-bold text-center">Frequently asked questions</h2>
+    
+    <div class="mt-16 space-y-8">
+        <div class="border-b border-gray-200 pb-6">
+            <h3 class="text-lg font-semibold mb-2">How does the matching work?</h3>
+            <p class="text-gray-500">We match you with peers based on your skill level, timezone, and learning goals to ensure the best possible collaboration experience.</p>
+        </div>
+        
+        <div class="border-b border-gray-200 pb-6">
+            <h3 class="text-lg font-semibold mb-2">What if I don't get along with my partner?</h3>
+            <p class="text-gray-500">You can request a new match at any time. We want you to have the best learning experience possible.</p>
+        </div>
+        
+        <div class="border-b border-gray-200 pb-6">
+            <h3 class="text-lg font-semibold mb-2">Are the challenges suitable for beginners?</h3>
+            <p class="text-gray-500">Yes! Our AI generates challenges tailored to your skill level, whether you're just starting out or already experienced.</p>
+        </div>
+        
+        <div class="pb-6">
+            <h3 class="text-lg font-semibold mb-2">Can I use this for any programming language?</h3>
+            <p class="text-gray-500">Absolutely! Our platform supports all major programming languages and frameworks.</p>
+        </div>
+    </div>
+</section>
+{% endblock %} 

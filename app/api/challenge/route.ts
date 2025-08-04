@@ -18,7 +18,7 @@ export async function GET() {
 
 // --- POST handler: still supports your AI logic when you send learners[] in the body
 export async function POST(req: Request) {
-  let body: any;
+  let body: { learners?: { name: string; skill: string; level: string }[] };
   try {
     body = await req.json();
   } catch {
