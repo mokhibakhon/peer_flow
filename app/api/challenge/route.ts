@@ -16,7 +16,7 @@ export async function GET() {
 }
 
 // --- POST handler: returns mock plan for now
-export async function POST(req: Request) {
+export async function POST() {
   // Always return mock plan for now
   return NextResponse.json({ plan: MOCK_PLAN });
 }
