@@ -35,7 +35,12 @@ export async function POST(req: Request) {
   }
 
   // Otherwise invoke OpenAI (make sure OPENAI_API_KEY is set in .env.local!)
-  const ai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+  if (!process.env.OPENAI_API_KEY) {
+    console.warn('OPENAI_API_KEY not set, returning mock plan');
+    return NextResponse.json({ plan: MOCK_PLAN });
+  }
+  
+  const ai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const prompt = `
 You are a world-class coding tutor.
 Generate a 21-day paired study plan for:

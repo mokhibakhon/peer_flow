@@ -6,7 +6,9 @@ import { useState, useEffect } from 'react';
 /* —— Uzbek-style names —— */
 const NAMES = [
   'Aziz', 'Zarina', 'Dilshod', 'Javlon', 'Nigora', 'Bekzod',
-  'Laylo', 'Odil', 'Maftuna', 'Sherzod', 'Umida', 'Kamron',
+  'Laylo', 'Odil', 'Maftuna', 'Sherzod', 'Umida', 'Kamron', 'Saodat',
+  'Farida', 'Rustam', 'Malika', 'Jasur', 'Durdona', 'Azamat',
+  'Gulnora', 'Shahzod', 'Mukhlisa', 'Bobur', 'Nilufar', 'Jamshid',
 ];
 
 /* —— skills & levels —— */
@@ -19,6 +21,13 @@ const SKILLS: [string, string][] = [
   ['Java', 'Beginner'],
   ['C#', 'Intermediate'],
   ['Docker', 'Intermediate'],
+  ['Python', 'Advanced'],
+  ['Vue.js', 'Beginner'],
+  ['Angular', 'Intermediate'],
+  ['PHP', 'Beginner'],
+  ['Go', 'Intermediate'],
+  ['Rust', 'Advanced'],
+  ['Swift', 'Beginner'],
 ];
 
 /* —— build random peer list —— */
@@ -37,17 +46,22 @@ export default function FindAPeer() {
   const [searchTerm, setSearchTerm] = useState('');
   const [invites, setInvites] = useState<string[]>([]);
 
-  // hydrate invites from localStorage
+  // Load existing invites and generate fresh peers on component mount
   useEffect(() => {
+    // Load existing invites from localStorage
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       try {
         setInvites(JSON.parse(stored));
       } catch {
         localStorage.removeItem(STORAGE_KEY);
+        setInvites([]);
       }
     }
+    // Generate fresh peer list
+    setPeers(getRandomPeers());
   }, []);
+
 
   function sendInvite(name: string) {
     if (invites.includes(name)) return;
@@ -66,12 +80,19 @@ export default function FindAPeer() {
       <h1 className="text-4xl font-bold text-center">Find a coding buddy</h1>
       <p className="mx-auto mt-4 max-w-xl text-center text-gray-500">
         Send an invite to someone to pair up, or reshuffle for new peers.
+        {invites.length > 0 && (
+          <span className="block mt-2 text-sm text-accent">
+            You&apos;ve sent {invites.length} invite{invites.length !== 1 ? 's' : ''}
+          </span>
+        )}
       </p>
 
       {/* controls */}
       <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
         <button
-          onClick={() => setPeers(getRandomPeers())}
+          onClick={() => {
+            setPeers(getRandomPeers());
+          }}
           className="rounded-md bg-accent px-5 py-2 font-medium text-gray-900 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
         >
           Refresh list
@@ -101,7 +122,9 @@ export default function FindAPeer() {
                   className={`mt-3 inline-block rounded-full px-3 py-1 text-xs font-medium ${
                     level === 'Beginner'
                       ? 'bg-green-100 text-green-800'
-                      : 'bg-blue-100 text-blue-800'
+                      : level === 'Intermediate'
+                      ? 'bg-blue-100 text-blue-800'
+                      : 'bg-purple-100 text-purple-800'
                   }`}
                 >
                   {level}
@@ -128,7 +151,7 @@ export default function FindAPeer() {
 
         {filtered.length === 0 && (
           <li className="col-span-full text-center text-gray-500">
-            No peers match “{searchTerm}”
+            No peers match &quot;{searchTerm}&quot;
           </li>
         )}
       </ul>
